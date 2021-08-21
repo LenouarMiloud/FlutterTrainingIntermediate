@@ -3,3 +3,4 @@
 
 ### 2. [Progress Indicator](https://github.com/LenouarMiloud/FlutterTrainingIntermediate/tree/main/Widgets/slider_and_indicator_app)
 ![](https://github.com/LenouarMiloud/FlutterTrainingIntermediate/blob/main/screenshots/screenshot3.gif)
+![](https://github.com/LenouarMiloud/FlutterTrainingIntermediate/blob/main/screenshots/screenshot2.gif)
