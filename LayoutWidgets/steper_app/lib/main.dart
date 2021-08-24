@@ -15,22 +15,28 @@ class _State extends State<MyApp>{
 
   List<Step> _steps = [];
   late int _current;
+  late TextEditingController _name;
+  late TextEditingController _age;
+  String? _displayName;
+  String? _displayAge;
 
 
   @override
   void initState() {
+    super.initState();
     _current = 0;
-    _steps = <Step>[
-      new Step(title: new Text('Step 1'), content: new Text('Do Something'), isActive: true),
-      new Step(title: new Text('Step 2'), content: new Text('Do Something'), isActive: false),
-      new Step(title: new Text('Step 3'), content: new Text('Do Something'), isActive: false),
-    ];
+    _name = new TextEditingController();
+    _age = new TextEditingController();
   }
 
   void _stepContinue() {
     setState(() {
       _current++;
-      if(_current >= _steps.length) _current = _steps.length - 1;
+      if(_current >= _steps.length) _current + _steps.length - 1;
+      if(_current == 2){
+        _displayName = _name.text;
+        _displayAge = _age.text;
+      }
     });
   }
 
@@ -58,12 +64,48 @@ class _State extends State<MyApp>{
         padding: new EdgeInsets.all(32.0),
         child: new Center(
           child: new Stepper(
-              steps: _steps,
               type: StepperType.vertical,
-              currentStep: _current,
-              onStepCancel: _stepCancel,
-              onStepContinue: _stepContinue,
-              onStepTapped: _stepTap,
+              steps: _steps = [
+                new Step(
+                    title: new Text('Step 1'),
+                    isActive: true,
+                    content: new Column(
+                      children: <Widget>[
+                        new TextField(
+                          controller: _name,
+                          decoration: new InputDecoration(labelText: 'Enter Your Name'),
+                        )
+                      ],
+                    )
+                ),
+                new Step(
+                    title: new Text('Step 2'),
+                    isActive: true,
+                    content: new Column(
+                      children: <Widget>[
+                        new TextField(
+                          controller: _age,
+                          decoration: new InputDecoration(labelText: 'Enter your age'),
+                          keyboardType: TextInputType.number,
+                        )
+                      ],
+                    )
+                ),
+                new Step(
+                    title: new Text('Step 3'),
+                    content: new Column(
+                      children: <Widget>[
+                        new Text('You Entered:'),
+                        new Text('Your name is ${_displayName}:'),
+                        new Text('Your age is ${_displayAge}:'),
+                      ],
+                    )
+                ),
+              ],
+            currentStep: _current,
+            onStepTapped: _stepTap,
+            onStepContinue: _stepContinue,
+            onStepCancel: _stepCancel,
           )
         ),
       ),
