@@ -16,12 +16,12 @@ class _HomeState extends State<Home> {
   void initState() {
     _name = new TextEditingController();
     _store.set('name', '');
-    _name.text = _store.get('name');
+    _name!.text = _store.get('name');
   }
 
   void _onPressed() {
     setState((){
-      _store.set('name', _name.text);
+      _store.set('name', _name!.text);
     });
     Navigator.of(context).pushNamed('/Second');
   }
@@ -41,7 +41,13 @@ class _HomeState extends State<Home> {
                   controller: _name,
                   decoration: new InputDecoration(labelText: 'Enter your name'),
                 ),
-                new ElevatedButton(onPressed: _onPressed, child: new Text('Next'),)
+                new Container(
+                  padding: new EdgeInsets.all(11.2),
+                ),
+                new ElevatedButton(
+                  onPressed: _onPressed,
+                  child: new Text('Next'),
+                  )
               ],
             ),
           )

@@ -22,7 +22,9 @@ class _SecondState extends State<Second> {
             child: new Column(
               children: <Widget>[
                 new Text('Hello ${_store.get('name')}'),
-
+                new Container(
+                  padding: new EdgeInsets.all(11.2),
+                ),
                 new ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child: new Text('Back'),)
               ],
             ),
